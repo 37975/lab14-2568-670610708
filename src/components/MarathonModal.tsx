@@ -135,7 +135,7 @@ export default function MarathonModal({ opened, onClose }: MarathonModalProps) {
             withAsterisk
             value={confirmPassword}
             onChange={(e) => {
-              setPassword(e.currentTarget.value);
+              setConfirmPassword(e.currentTarget.value);
               mantineForm.setFieldValue(
                 "confirmPassword",
                 e.currentTarget.value
