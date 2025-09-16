@@ -196,6 +196,7 @@ export default function MarathonModal({ opened, onClose }: MarathonModalProps) {
           {haveCoupon && (
             <TextInput
               label="Coupon Code"
+              withAsterisk
               value={coupon}
               onChange={(e) => {
                 setCoupon(e.currentTarget.value);

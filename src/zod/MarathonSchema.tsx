@@ -13,31 +13,31 @@ export const marathonSchema = z
     password: z.string()
       .min(6, {message: "Password must contain at least 6 letters"})
       .max(12, {message: "Password must not exceed 12 characters"}),
-    confirmpassword: z.string().optional(),
+    confirmPassword: z.string().optional(),
     gender: z.enum(["male", "female"], { message: "Select gender" }),
     agree: z.boolean().default(false),
     email: z.email(),
     haveCoupon: z.boolean().default(false),
-    couponCode: z.string().optional(),
+    coupon: z.string().optional(),
   })
   .refine(
     (data) => {
       if (!data.haveCoupon) return true;
-      return data.couponCode?.trim() === "CMU2025";
+      return data.coupon?.trim() === "CMU2025";
     },
     {
       message: "Invalid coupon code",
-      path: ["couponCode"],
+      path: ["coupon"],
     }
   )
   .refine(
     (data) => {
-      if (data.password === data.confirmpassword) return true;
-      return data.password?.trim() === data.confirmpassword;
+      if (data.password === data.confirmPassword) return true;
+      return data.password?.trim() === data.confirmPassword;
     },
     {
       message: "Password does not match",
-      path: ["confirmpassword"],
+      path: ["confirmPassword"],
     }
   );
 export type MarathonForm = z.infer<typeof marathonSchema>;
